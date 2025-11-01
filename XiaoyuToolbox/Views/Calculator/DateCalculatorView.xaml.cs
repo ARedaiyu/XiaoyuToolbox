@@ -13,31 +13,87 @@ namespace XiaoyuToolbox.Views.Calculator
         }
     }
 
-    public partial class DateModel : ObservableObject
+    public partial class DateModel(DateTime dateTime, bool todayVisible = true) : ObservableObject
     {
-        [ObservableProperty] private int year;
-        [ObservableProperty] private int month;
-        [ObservableProperty] private int day;
+        private string yearText = dateTime.Year.ToString();
+        public string YearText
+        {
+            get => yearText;
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    SetProperty(ref yearText, value);
+                    return;
+                }
+                if (int.TryParse(value, out int year))
+                {
+                    if (year > 0)
+                    {
+                        SetProperty(ref yearText, value);
+                    }
+                }
+            }
+        }
 
-        private readonly bool todayVisible;
+        private string monthText = dateTime.Month.ToString();
+        public string MonthText
+        {
+            get => monthText;
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    SetProperty(ref monthText, value);
+                    return;
+                }
+                if (int.TryParse(value, out int month))
+                {
+                    if (month >= 1 && month <= 12)
+                    {
+                        SetProperty(ref monthText, value);
+                    }
+                }
+            }
+        }
+
+        private string dayText = dateTime.Day.ToString();
+        public string DayText
+        {
+            get => dayText;
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    SetProperty(ref dayText, value);
+                    return;
+                }
+                if (int.TryParse(value, out int day))
+                {
+                    if (day >= 1 && day <= 31)
+                    {
+                        SetProperty(ref dayText, value);
+                    }
+                }
+            }
+        }
+
+        private readonly bool todayVisible = todayVisible;
 
         public Visibility TodayVisibility => todayVisible ? Visibility.Visible : Visibility.Collapsed;
-
-        public DateModel(DateTime dateTime, bool todayVisible = true)
-        {
-            Year = dateTime.Year;
-            Month = dateTime.Month;
-            Day = dateTime.Day;
-
-            this.todayVisible = todayVisible;
-        }
+        public bool IsDateReadonly => !todayVisible;
 
         [RelayCommand]
         private void Today()
         {
-            Year = DateTime.Today.Year;
-            Month = DateTime.Today.Month;
-            Day = DateTime.Today.Day;
+            YearText = DateTime.Today.Year.ToString();
+            MonthText = DateTime.Today.Month.ToString();
+            DayText = DateTime.Today.Day.ToString();
+        }
+
+        public DateTime ToDateTime()
+        {
+            return new DateTime(int.Parse(YearText), int.Parse(MonthText), int.Parse(DayText));
         }
     }
 
@@ -48,7 +104,27 @@ namespace XiaoyuToolbox.Views.Calculator
         [ObservableProperty] private DateModel startDate = new(DateTime.Today);
         [ObservableProperty] private DateModel endDate = new(DateTime.Today);
 
-        [ObservableProperty] private int offsetDays;
+        private string offsetDays = 0.ToString();
+        public string OffsetDays
+        {
+            get => offsetDays;
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    SetProperty(ref offsetDays, value);
+                    return;
+                }
+                if (int.TryParse(value, out int days))
+                {
+                    if (days >= 0)
+                    {
+                        SetProperty(ref offsetDays, value);
+                    }
+                }
+            }
+        }
+
         [ObservableProperty] private int diffDays;
 
         [ObservableProperty] private bool isAdd = true;
@@ -63,12 +139,12 @@ namespace XiaoyuToolbox.Views.Calculator
         {
             try
             {
-                DateTime baseDateTime = new(BaseDate.Year, BaseDate.Month, BaseDate.Day);
-                ResultDate = new DateModel(baseDateTime.AddDays(OffsetDays * (IsAdd ? 1 : -1)), false);
+                DateTime baseDateTime = BaseDate.ToDateTime();
+                ResultDate = new DateModel(baseDateTime.AddDays(int.Parse(OffsetDays) * (IsAdd ? 1 : -1)), false);
             }
             catch
             {
-                MessageBox.Show("日期不正确", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("计算错误", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -77,13 +153,13 @@ namespace XiaoyuToolbox.Views.Calculator
         {
             try
             {
-                DateTime startDateTime = new(StartDate.Year, StartDate.Month, StartDate.Day);
-                DateTime endDateTime = new(EndDate.Year, EndDate.Month, EndDate.Day);
+                DateTime startDateTime = StartDate.ToDateTime();
+                DateTime endDateTime = EndDate.ToDateTime();
                 DiffDays = (int)(endDateTime - startDateTime).TotalDays;
             }
             catch
             {
-                MessageBox.Show("日期不正确", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("计算错误", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
     }

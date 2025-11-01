@@ -43,6 +43,12 @@
         </Style>
 
         <DataTemplate x:Key="DateTemplate" DataType="vm:DateModel">
+            <DataTemplate.Resources>
+                <Style TargetType="TextBox">
+                    <Setter Property="IsReadOnly" Value="{Binding IsDateReadonly}" />
+                </Style>
+            </DataTemplate.Resources>
+
             <StackPanel
                 Height="{StaticResource StackPanelHeight}"
                 Margin="{StaticResource MarginA2}"
@@ -50,19 +56,19 @@
                 <TextBox
                     Width="60"
                     MaxLength="4"
-                    Text="{Binding Year, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    Text="{Binding YearText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 <TextBlock Margin="{StaticResource MarginB3}" Text="年" />
 
                 <TextBox
                     Width="40"
                     MaxLength="2"
-                    Text="{Binding Month, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    Text="{Binding MonthText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 <TextBlock Margin="{StaticResource MarginB3}" Text="月" />
 
                 <TextBox
                     Width="40"
                     MaxLength="2"
-                    Text="{Binding Day, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    Text="{Binding DayText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 <TextBlock Margin="{StaticResource MarginB3}" Text="日" />
 
                 <Button
@@ -101,6 +107,7 @@
                     <TextBox
                         Width="{StaticResource TextBoxWidth1}"
                         Margin="{StaticResource MarginB1}"
+                        MaxLength="7"
                         Text="{Binding OffsetDays, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                     <TextBlock Margin="{StaticResource MarginB2}" Text="天" />
@@ -142,6 +149,8 @@
                     <TextBox
                         Width="{StaticResource TextBoxWidth1}"
                         Margin="{StaticResource MarginB1}"
+                        IsReadOnly="True"
+                        MaxLength="7"
                         Text="{Binding DiffDays, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                     <TextBlock Margin="{StaticResource MarginB1}" Text="天" />
