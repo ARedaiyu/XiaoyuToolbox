@@ -1,0 +1,55 @@
+﻿<UserControl
+    x:Class="XiaoyuToolbox.Views.Encoding.TextToUnicodeView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:XiaoyuToolbox.Views.Encoding"
+    d:DesignHeight="600"
+    d:DesignWidth="800"
+    Background="White"
+    FontSize="16"
+    mc:Ignorable="d">
+    <UserControl.DataContext>
+        <vm:TextToUnicodeViewModel />
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <Thickness x:Key="Margin">5</Thickness>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="{StaticResource Margin}" />
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="{StaticResource Margin}" />
+            <Setter Property="AcceptsReturn" Value="True" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Margin="100,20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="3*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="输入文本：" />
+        <TextBox Grid.Row="1" Text="{Binding TextToConvert}" />
+        <Button
+            Grid.Row="2"
+            Width="80"
+            Margin="{StaticResource Margin}"
+            Command="{Binding ConvertCommand}"
+            Content="转换" />
+        <TextBlock Grid.Row="3" Text="转换结果：" />
+        <TextBox
+            Grid.Row="4"
+            IsReadOnly="True"
+            Text="{Binding ConvertedText}" />
+    </Grid>
+</UserControl>

@@ -1,0 +1,45 @@
+﻿<Window
+    x:Class="XiaoyuToolbox.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=netstandard"
+    Title="小鱼工具箱"
+    Width="800"
+    Height="600"
+    MinWidth="400"
+    MinHeight="300"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <sys:Double x:Key="MenuHeight">20</sys:Double>
+
+        <Style TargetType="MenuItem">
+            <Setter Property="Height" Value="{StaticResource MenuHeight}" />
+        </Style>
+    </Window.Resources>
+
+    <DockPanel>
+        <Menu Height="{StaticResource MenuHeight}" DockPanel.Dock="Top">
+            <MenuItem Header="工具">
+                <MenuItem x:Name="MainViewMI" Header="主页" />
+
+                <MenuItem Header="进制转换">
+                    <MenuItem x:Name="BaseConversion1MI" Header="进制转换1" />
+                </MenuItem>
+
+                <MenuItem Header="编码工具">
+                    <MenuItem x:Name="TextToUnicodeMI" Header="文本转Unicode" />
+                </MenuItem>
+
+                <MenuItem Header="计算器">
+                    <MenuItem x:Name="CalculatorMI" Header="日期计算器" />
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <ContentControl x:Name="ToolView" />
+    </DockPanel>
+</Window>
