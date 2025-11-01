@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using XiaoyuToolbox.Common;
 using XiaoyuToolbox.Views;
-using XiaoyuToolbox.Views.BaseConversion;
 using XiaoyuToolbox.Views.Calculator;
 using XiaoyuToolbox.Views.Encoding;
 
@@ -34,10 +33,9 @@ public partial class MainWindow : Window
     {
         MainViewMI.Click += (s, e) => { ToolView.Content = new MainView(); };
 
-        BaseConversion1MI.Click += (s, e) => { ToolView.Content = new BaseConversion1View(); };
-
         TextToUnicodeMI.Click += (s, e) => { ToolView.Content = new TextToUnicodeView(); };
 
-        CalculatorMI.Click += (s, e) => { ToolView.Content = new DateCalculatorView(); };
+        BaseConversion1MI.Click += (s, e) => { ToolView.Content = new BaseConversion1View(); };
+        DateCalculatorMI.Click += (s, e) => { ToolView.Content = new DateCalculatorView(); };
     }
 }

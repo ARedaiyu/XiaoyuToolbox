@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using XiaoyuToolbox.Common;
 
-namespace XiaoyuToolbox.Views.BaseConversion
+namespace XiaoyuToolbox.Views.Calculator
 {
     public partial class BaseConversion1View : UserControl
     {
