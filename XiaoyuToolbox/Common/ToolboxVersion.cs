@@ -2,7 +2,7 @@
 {
     public class ToolboxVersion(int major, int minor, int patch, VersionType type, int build)
     {
-        public static ToolboxVersion Current { get; } = new ToolboxVersion(1, 0, 0, VersionType.Alpha, 3);
+        public static ToolboxVersion Current { get; } = new ToolboxVersion(1, 0, 1, VersionType.Alpha, 1);
 
         public int Major { get; } = major;
         public int Minor { get; } = minor;
