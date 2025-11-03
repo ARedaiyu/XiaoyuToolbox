@@ -4,10 +4,94 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:XiaoyuToolbox.Views.Calculator"
     d:DesignHeight="600"
     d:DesignWidth="800"
     Background="{StaticResource ViewBackground}"
     FontSize="{StaticResource ViewFontSize}"
     mc:Ignorable="d">
-    <Grid />
+    <UserControl.DataContext>
+        <vm:AverageCalculatorViewModel />
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <Thickness x:Key="MarginA1">5</Thickness>
+    </UserControl.Resources>
+
+    <StackPanel Margin="100,20">
+        <TextBlock Margin="{StaticResource MarginA1}" Text="导入一个txt文件，每行一个整数" />
+
+        <Grid Height="30" Margin="{StaticResource MarginA1}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Button Command="{Binding ChooseFileCommand}" Content="选择文件" />
+
+            <TextBox
+                Grid.Column="1"
+                Margin="5,0,0,0"
+                VerticalContentAlignment="Center"
+                Text="{Binding Path, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        </Grid>
+
+        <TextBlock
+            Margin="{StaticResource MarginA1}"
+            HorizontalAlignment="Center"
+            Text="{Binding Hint, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Button
+            Width="80"
+            Height="30"
+            Margin="{StaticResource MarginA1}"
+            Command="{Binding CalculateCommand}"
+            Content="计算" />
+
+        <Grid Width="300" Margin="{StaticResource MarginA1}">
+            <Grid.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="HorizontalAlignment" Value="Right" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Margin" Value="0,0,10,0" />
+                </Style>
+
+                <Style TargetType="TextBox">
+                    <Setter Property="Margin" Value="{StaticResource MarginA1}" />
+                    <Setter Property="IsReadOnly" Value="True" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                </Style>
+            </Grid.Resources>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="120" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="平均数" />
+
+            <TextBox Grid.Column="1" Text="{Binding AverageText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+            <TextBlock Grid.Row="1" Text="中位数" />
+
+            <TextBox
+                Grid.Row="1"
+                Grid.Column="1"
+                Text="{Binding MedianText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+            <TextBlock Grid.Row="2" Text="众数" />
+
+            <TextBox
+                Grid.Row="2"
+                Grid.Column="1"
+                VerticalContentAlignment="Top"
+                Text="{Binding ModeText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        </Grid>
+    </StackPanel>
 </UserControl>
