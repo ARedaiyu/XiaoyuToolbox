@@ -41,57 +41,83 @@
             HorizontalAlignment="Center"
             Text="{Binding Hint, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-        <Button
-            Width="80"
-            Height="30"
-            Margin="{StaticResource MarginA1}"
-            Command="{Binding CalculateCommand}"
-            Content="计算" />
-
-        <Grid Width="300" Margin="{StaticResource MarginA1}">
-            <Grid.Resources>
-                <Style TargetType="TextBlock">
-                    <Setter Property="HorizontalAlignment" Value="Right" />
-                    <Setter Property="VerticalAlignment" Value="Center" />
-                    <Setter Property="Margin" Value="0,0,10,0" />
-                </Style>
-
-                <Style TargetType="TextBox">
-                    <Setter Property="Margin" Value="{StaticResource MarginA1}" />
-                    <Setter Property="IsReadOnly" Value="True" />
-                    <Setter Property="VerticalContentAlignment" Value="Center" />
-                </Style>
-            </Grid.Resources>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="120" />
-            </Grid.RowDefinitions>
-
+        <Grid Margin="{StaticResource MarginA1}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
-                <ColumnDefinition Width="2*" />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="平均数" />
+            <StackPanel Margin="{StaticResource MarginA1}">
+                <Button
+                    Width="150"
+                    Height="30"
+                    Margin="{StaticResource MarginA1}"
+                    Command="{Binding CalculateFromTextBoxCommand}"
+                    Content="计算（从文本框）" />
 
-            <TextBox Grid.Column="1" Text="{Binding AverageText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox
+                    Height="250"
+                    Margin="{StaticResource MarginA1}"
+                    AcceptsReturn="True"
+                    Text="{Binding InputText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    TextWrapping="Wrap"
+                    VerticalScrollBarVisibility="Auto" />
+            </StackPanel>
 
-            <TextBlock Grid.Row="1" Text="中位数" />
+            <StackPanel Grid.Column="1" Margin="{StaticResource MarginA1}">
+                <Button
+                    Width="150"
+                    Height="30"
+                    Margin="{StaticResource MarginA1}"
+                    Command="{Binding CalculateFromFileCommand}"
+                    Content="计算（从文件）" />
 
-            <TextBox
-                Grid.Row="1"
-                Grid.Column="1"
-                Text="{Binding MedianText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <Grid>
+                    <Grid.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="Margin" Value="0,0,10,0" />
+                        </Style>
 
-            <TextBlock Grid.Row="2" Text="众数" />
+                        <Style TargetType="TextBox">
+                            <Setter Property="Margin" Value="{StaticResource MarginA1}" />
+                            <Setter Property="IsReadOnly" Value="True" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                        </Style>
+                    </Grid.Resources>
 
-            <TextBox
-                Grid.Row="2"
-                Grid.Column="1"
-                VerticalContentAlignment="Top"
-                Text="{Binding ModeText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="120" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="平均数" />
+
+                    <TextBox Grid.Column="1" Text="{Binding AverageText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBlock Grid.Row="1" Text="中位数" />
+
+                    <TextBox
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Text="{Binding MedianText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBlock Grid.Row="2" Text="众数" />
+
+                    <TextBox
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        VerticalContentAlignment="Top"
+                        Text="{Binding ModeText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                </Grid>
+            </StackPanel>
         </Grid>
     </StackPanel>
 </UserControl>

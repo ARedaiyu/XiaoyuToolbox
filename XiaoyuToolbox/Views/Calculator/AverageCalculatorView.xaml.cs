@@ -18,46 +18,23 @@ namespace XiaoyuToolbox.Views.Calculator
     {
         [ObservableProperty] private string path;
         [ObservableProperty] private string hint;
+        [ObservableProperty] private string inputText;
 
         [ObservableProperty] private string averageText;
         [ObservableProperty] private string medianText;
         [ObservableProperty] private string modeText;
 
-        [RelayCommand]
-        private void ChooseFile()
-        {
-            OpenFileDialog dialog = new()
-            {
-                Filter = "文本文件 (*.txt)|*.txt",
-                Multiselect = false
-            };
-
-            if (dialog.ShowDialog() == true)
-            {
-                Path = dialog.FileName;
-            }
-        }
-
-        [RelayCommand]
-        private void Calculate()
+        private void Clear()
         {
             Hint = string.Empty;
 
             AverageText = string.Empty;
             MedianText = string.Empty;
             ModeText = string.Empty;
+        }
 
-            string[] lines;
-            try
-            {
-                lines = File.ReadAllLines(Path);
-            }
-            catch
-            {
-                Hint = "读取文件失败，请检查文件是否存在或损坏";
-                return;
-            }
-
+        private void Calculate(string[] lines)
+        {
             List<int> numbers = [];
             for (int i = 0; i < lines.Length; i++)
             {
@@ -87,7 +64,7 @@ namespace XiaoyuToolbox.Views.Calculator
             numbers.Sort();
 
             double average = numbers.Average();
-            AverageText = $"{average:F2}";
+            AverageText = $"{average}";
 
             double median;
             int n = numbers.Count;
@@ -115,6 +92,48 @@ namespace XiaoyuToolbox.Views.Calculator
             }
 
             ModeText = modeResult;
+        }
+
+        [RelayCommand]
+        private void ChooseFile()
+        {
+            OpenFileDialog dialog = new()
+            {
+                Filter = "文本文件 (*.txt)|*.txt",
+                Multiselect = false
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                Path = dialog.FileName;
+            }
+        }
+
+        [RelayCommand]
+        private void CalculateFromFile()
+        {
+            Clear();
+
+            string[] lines;
+            try
+            {
+                lines = File.ReadAllLines(Path);
+            }
+            catch
+            {
+                Hint = "读取文件失败，请检查文件是否存在或损坏";
+                return;
+            }
+
+            Calculate(lines);
+        }
+
+        [RelayCommand]
+        private void CalculateFromTextBox()
+        {
+            Clear();
+            string[] lines = InputText.Split('\n');
+            Calculate(lines);
         }
     }
 
