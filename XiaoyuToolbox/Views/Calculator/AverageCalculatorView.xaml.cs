@@ -132,7 +132,18 @@ namespace XiaoyuToolbox.Views.Calculator
         private void CalculateFromTextBox()
         {
             Clear();
-            string[] lines = InputText.Split('\n');
+
+            string[] lines;
+            try
+            {
+                lines = InputText.Split('\n');
+            }
+            catch
+            {
+                Hint = "文本内容为空或者无效";
+                return;
+            }
+
             Calculate(lines);
         }
     }
