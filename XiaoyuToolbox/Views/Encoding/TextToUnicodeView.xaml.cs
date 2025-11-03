@@ -31,7 +31,17 @@ namespace XiaoyuToolbox.Views.Encoding
             string result = string.Empty;
             foreach (Rune rune in TextToConvert.EnumerateRunes())
             {
-                result += string.Format("'{0}' -> U+{1:X4} ({1})\n", rune.ToString(), rune.Value);
+                string strChar = rune.ToString();
+                if (rune.Value == 10)
+                {
+                    strChar = "\\n";
+                }
+                else if (rune.Value == 13)
+                {
+                    strChar = "\\r";
+                }
+
+                result += string.Format("'{0}' -> U+{1:X4} ({1})\n", strChar, rune.Value);
             }
 
             ConvertedText = result;
