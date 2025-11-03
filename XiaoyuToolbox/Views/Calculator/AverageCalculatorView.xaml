@@ -6,8 +6,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="600"
     d:DesignWidth="800"
-    Background="White"
-    FontSize="16"
+    Background="{StaticResource ViewBackground}"
+    FontSize="{StaticResource ViewFontSize}"
     mc:Ignorable="d">
     <Grid />
 </UserControl>

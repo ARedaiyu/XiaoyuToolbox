@@ -2,6 +2,10 @@
     x:Class="XiaoyuToolbox.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=netstandard"
     StartupUri="MainWindow.xaml">
-    <Application.Resources />
+    <Application.Resources>
+        <sys:Double x:Key="ViewFontSize">16</sys:Double>
+        <SolidColorBrush x:Key="ViewBackground" Color="White" />
+    </Application.Resources>
 </Application>
