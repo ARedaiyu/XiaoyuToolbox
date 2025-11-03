@@ -18,7 +18,7 @@
         <Thickness x:Key="MarginA1">5</Thickness>
     </UserControl.Resources>
 
-    <StackPanel Margin="100,20">
+    <StackPanel Margin="{StaticResource Margin1}">
         <TextBlock Margin="{StaticResource MarginA1}" Text="导入一个txt文件，每行一个整数" />
 
         <Grid Height="30" Margin="{StaticResource MarginA1}">

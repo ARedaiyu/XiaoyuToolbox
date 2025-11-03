@@ -79,7 +79,7 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <Grid Margin="100,20">
+    <Grid Margin="{StaticResource Margin1}">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />

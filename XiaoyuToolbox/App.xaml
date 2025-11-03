@@ -7,5 +7,7 @@
     <Application.Resources>
         <sys:Double x:Key="ViewFontSize">16</sys:Double>
         <SolidColorBrush x:Key="ViewBackground" Color="White" />
+
+        <Thickness x:Key="Margin1">100,20</Thickness>
     </Application.Resources>
 </Application>

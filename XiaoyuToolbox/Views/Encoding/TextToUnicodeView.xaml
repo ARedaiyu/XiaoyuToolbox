@@ -29,7 +29,7 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid Margin="100,20">
+    <Grid Margin="{StaticResource Margin1}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="2*" />

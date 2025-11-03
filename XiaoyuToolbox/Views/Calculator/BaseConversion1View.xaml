@@ -39,7 +39,7 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <StackPanel Margin="100,20">
+    <StackPanel Margin="{StaticResource Margin1}">
         <ItemsControl ItemTemplate="{StaticResource BaseRowTemplate}" ItemsSource="{Binding BaseItems}" />
     </StackPanel>
 </UserControl>
