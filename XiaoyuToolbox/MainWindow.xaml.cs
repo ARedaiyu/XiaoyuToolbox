@@ -37,5 +37,6 @@ public partial class MainWindow : Window
 
         BaseConversion1MI.Click += (s, e) => { ToolView.Content = new BaseConversion1View(); };
         DateCalculatorMI.Click += (s, e) => { ToolView.Content = new DateCalculatorView(); };
+        AverageCalculatorMI.Click += (s, e) => { ToolView.Content = new AverageCalculatorView(); };
     }
 }

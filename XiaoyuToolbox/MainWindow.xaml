@@ -33,6 +33,7 @@
                 <MenuItem Header="计算器">
                     <MenuItem x:Name="BaseConversion1MI" Header="进制转换1" />
                     <MenuItem x:Name="DateCalculatorMI" Header="日期计算器" />
+                    <MenuItem x:Name="AverageCalculatorMI" Header="平均数计算器" />
                 </MenuItem>
             </MenuItem>
         </Menu>
