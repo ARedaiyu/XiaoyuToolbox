@@ -1,12 +1,11 @@
 ﻿using System.Windows.Controls;
 
-namespace XiaoyuToolbox.Views
+namespace XiaoyuToolbox.Views;
+
+public partial class MainView : UserControl
 {
-    public partial class MainView : UserControl
+    public MainView()
     {
-        public MainView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

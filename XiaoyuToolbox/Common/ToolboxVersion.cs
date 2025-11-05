@@ -1,26 +1,25 @@
-﻿namespace XiaoyuToolbox.Common
+﻿namespace XiaoyuToolbox.Common;
+
+public class ToolboxVersion(int major, int minor, int patch, VersionType type, int build)
 {
-    public class ToolboxVersion(int major, int minor, int patch, VersionType type, int build)
+    public static ToolboxVersion Current { get; } = new ToolboxVersion(1, 0, 1, VersionType.Alpha, 1);
+
+    public int Major { get; } = major;
+    public int Minor { get; } = minor;
+    public int Patch { get; } = patch;
+    public VersionType Type { get; } = type;
+    public int Build { get; } = build;
+
+    public override string ToString()
     {
-        public static ToolboxVersion Current { get; } = new ToolboxVersion(1, 0, 1, VersionType.Alpha, 1);
-
-        public int Major { get; } = major;
-        public int Minor { get; } = minor;
-        public int Patch { get; } = patch;
-        public VersionType Type { get; } = type;
-        public int Build { get; } = build;
-
-        public override string ToString()
-        {
-            return $"{Major}.{Minor}.{Patch}-{Type}{Build}";
-        }
+        return $"{Major}.{Minor}.{Patch}-{Type}{Build}";
     }
+}
 
-    public enum VersionType
-    {
-        Alpha,
-        Beta,
-        Release,
-        Unknown
-    }
+public enum VersionType
+{
+    Alpha,
+    Beta,
+    Release,
+    Unknown
 }
