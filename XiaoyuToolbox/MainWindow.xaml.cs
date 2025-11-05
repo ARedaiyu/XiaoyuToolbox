@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using XiaoyuToolbox.Common;
 using XiaoyuToolbox.Views;
 using XiaoyuToolbox.Views.Calculator;
@@ -12,7 +13,12 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         FixWindowSize();
-        AddMenuItemClicks();
+
+        AddMenuItems();
+        MainViewMI.Click += (s, e) =>
+        {
+            ToolView.Content = new MainView();
+        };
 
         Title += $" v{ToolboxVersion.Current}";
         ToolView.Content = new MainView();
@@ -29,14 +35,47 @@ public partial class MainWindow : Window
         MinHeight += 39;
     }
 
-    private void AddMenuItemClicks()
+    private void AddMenuItems()
     {
-        MainViewMI.Click += (s, e) => { ToolView.Content = new MainView(); };
+        List<MenuCategory> categories =
+        [
+            new MenuCategory("编码工具",
+            [
+                new MenuItemInfo("文本转Unicode", typeof(TextToUnicodeView))
+            ]),
+            new MenuCategory("计算器",
+            [
+                new MenuItemInfo("进制转换1", typeof(BaseConversion1View)),
+                new MenuItemInfo("日期计算器", typeof(DateCalculatorView)),
+                new MenuItemInfo("平均数计算器", typeof(AverageCalculatorView))
+            ])
+        ];
 
-        TextToUnicodeMI.Click += (s, e) => { ToolView.Content = new TextToUnicodeView(); };
-
-        BaseConversion1MI.Click += (s, e) => { ToolView.Content = new BaseConversion1View(); };
-        DateCalculatorMI.Click += (s, e) => { ToolView.Content = new DateCalculatorView(); };
-        AverageCalculatorMI.Click += (s, e) => { ToolView.Content = new AverageCalculatorView(); };
+        foreach (MenuCategory category in categories)
+        {
+            MenuItem categoryMenuItem = new() { Header = category.Name };
+            foreach (MenuItemInfo item in category.Items)
+            {
+                MenuItem subItem = new() { Header = item.Title };
+                subItem.Click += (s, e) =>
+                {
+                    ToolView.Content = Activator.CreateInstance(item.ViewType);
+                };
+                categoryMenuItem.Items.Add(subItem);
+            }
+            ToolsMI.Items.Add(categoryMenuItem);
+        }
     }
+}
+
+public class MenuCategory(string name, List<MenuItemInfo> items)
+{
+    public string Name { get; } = name;
+    public List<MenuItemInfo> Items { get; } = items;
+}
+
+public class MenuItemInfo(string title, Type viewType)
+{
+    public string Title { get; } = title;
+    public Type ViewType { get; } = viewType;
 }

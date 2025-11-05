@@ -23,18 +23,8 @@
 
     <DockPanel>
         <Menu Height="{StaticResource MenuHeight}" DockPanel.Dock="Top">
-            <MenuItem Header="工具">
+            <MenuItem x:Name="ToolsMI" Header="工具">
                 <MenuItem x:Name="MainViewMI" Header="主页" />
-
-                <MenuItem Header="编码工具">
-                    <MenuItem x:Name="TextToUnicodeMI" Header="文本转Unicode" />
-                </MenuItem>
-
-                <MenuItem Header="计算器">
-                    <MenuItem x:Name="BaseConversion1MI" Header="进制转换1" />
-                    <MenuItem x:Name="DateCalculatorMI" Header="日期计算器" />
-                    <MenuItem x:Name="AverageCalculatorMI" Header="平均数计算器" />
-                </MenuItem>
             </MenuItem>
         </Menu>
 
