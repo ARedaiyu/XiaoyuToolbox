@@ -41,7 +41,7 @@ public partial class TextToUnicodeViewModel : ObservableObject
                 strChar = "\\r";
             }
 
-            result += string.Format("'{0}' -> U+{1:X4} ({1})\n", strChar, rune.Value);
+            result += string.Format("'{0}' -> U+{1:X4} ({1}){2}", strChar, rune.Value, Environment.NewLine);
         }
 
         ConvertedText = result;

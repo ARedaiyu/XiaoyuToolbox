@@ -88,7 +88,7 @@ public partial class AverageCalculatorViewModel : ObservableObject
         string modeResult = string.Empty;
         foreach (int mode in modes)
         {
-            modeResult += $"{mode}\n";
+            modeResult += $"{mode}{Environment.NewLine}";
         }
 
         ModeText = modeResult;
@@ -136,7 +136,7 @@ public partial class AverageCalculatorViewModel : ObservableObject
         string[] lines;
         try
         {
-            lines = InputText.Split('\n');
+            lines = InputText.Split(Environment.NewLine);
         }
         catch
         {
