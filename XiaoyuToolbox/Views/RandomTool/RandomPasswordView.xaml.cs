@@ -1,6 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Win32;
+using System.IO;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace XiaoyuToolbox.Views.RandomTool;
@@ -140,5 +143,41 @@ public partial class RandomPasswordViewModel : ObservableObject
         }
 
         Passwords = result.ToString();
+    }
+
+    [RelayCommand]
+    private void Export()
+    {
+        if (string.IsNullOrEmpty(Passwords))
+        {
+            return;
+        }
+
+        SaveFileDialog dialog = new()
+        {
+            Title = "保存文件",
+            Filter = "文本文件 (*.txt)|*.txt",
+            DefaultExt = ".txt",
+            AddExtension = true,
+            OverwritePrompt = true
+        };
+
+        if (dialog.ShowDialog() == true)
+        {
+            try
+            {
+                File.WriteAllText(dialog.FileName, Passwords);
+            }
+            catch
+            {
+                MessageBox.Show("保存文件失败", "错误", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+    }
+
+    [RelayCommand]
+    private void Clear()
+    {
+        Passwords = string.Empty;
     }
 }
