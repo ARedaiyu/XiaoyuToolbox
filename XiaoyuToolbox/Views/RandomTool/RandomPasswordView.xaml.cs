@@ -170,7 +170,7 @@ public partial class RandomPasswordViewModel : ObservableObject
             }
             catch
             {
-                MessageBox.Show("保存文件失败", "错误", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("保存文件失败", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

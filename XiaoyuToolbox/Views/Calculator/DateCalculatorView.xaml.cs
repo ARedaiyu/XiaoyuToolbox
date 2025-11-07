@@ -144,7 +144,7 @@ public partial class DateCalculatorViewModel : ObservableObject
         }
         catch
         {
-            MessageBox.Show("计算错误", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("计算错误", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 
@@ -159,7 +159,7 @@ public partial class DateCalculatorViewModel : ObservableObject
         }
         catch
         {
-            MessageBox.Show("计算错误", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("计算错误", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }
