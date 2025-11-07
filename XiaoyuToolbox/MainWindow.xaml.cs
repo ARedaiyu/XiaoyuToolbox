@@ -4,6 +4,7 @@ using XiaoyuToolbox.Common;
 using XiaoyuToolbox.Views;
 using XiaoyuToolbox.Views.Calculator;
 using XiaoyuToolbox.Views.Encoding;
+using XiaoyuToolbox.Views.RandomTool;
 
 namespace XiaoyuToolbox;
 
@@ -48,6 +49,10 @@ public partial class MainWindow : Window
                 new MenuItemInfo("进制转换1", typeof(BaseConversion1View)),
                 new MenuItemInfo("日期计算器", typeof(DateCalculatorView)),
                 new MenuItemInfo("平均数计算器", typeof(AverageCalculatorView))
+            ]),
+            new MenuCategory("随机工具",
+            [
+                new MenuItemInfo("随机密码生成器", typeof(RandomPasswordView))
             ])
         ];
 
