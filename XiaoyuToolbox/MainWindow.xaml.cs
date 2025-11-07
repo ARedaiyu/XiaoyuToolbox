@@ -10,6 +10,24 @@ namespace XiaoyuToolbox;
 
 public partial class MainWindow : Window
 {
+    private readonly List<MenuCategory> categories =
+    [
+        new MenuCategory("编码工具",
+        [
+            new MenuItemInfo("文本转Unicode", typeof(TextToUnicodeView))
+        ]),
+        new MenuCategory("计算器",
+        [
+            new MenuItemInfo("进制转换1", typeof(BaseConversion1View)),
+            new MenuItemInfo("日期计算器", typeof(DateCalculatorView)),
+            new MenuItemInfo("平均数计算器", typeof(AverageCalculatorView))
+        ]),
+        new MenuCategory("随机工具",
+        [
+            new MenuItemInfo("随机密码生成器", typeof(RandomPasswordView))
+        ])
+    ];
+
     public MainWindow()
     {
         InitializeComponent();
@@ -38,24 +56,6 @@ public partial class MainWindow : Window
 
     private void AddMenuItems()
     {
-        List<MenuCategory> categories =
-        [
-            new MenuCategory("编码工具",
-            [
-                new MenuItemInfo("文本转Unicode", typeof(TextToUnicodeView))
-            ]),
-            new MenuCategory("计算器",
-            [
-                new MenuItemInfo("进制转换1", typeof(BaseConversion1View)),
-                new MenuItemInfo("日期计算器", typeof(DateCalculatorView)),
-                new MenuItemInfo("平均数计算器", typeof(AverageCalculatorView))
-            ]),
-            new MenuCategory("随机工具",
-            [
-                new MenuItemInfo("随机密码生成器", typeof(RandomPasswordView))
-            ])
-        ];
-
         foreach (MenuCategory category in categories)
         {
             MenuItem categoryMenuItem = new() { Header = category.Name };
