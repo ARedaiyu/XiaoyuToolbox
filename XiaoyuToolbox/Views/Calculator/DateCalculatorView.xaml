@@ -46,6 +46,7 @@
             <DataTemplate.Resources>
                 <Style TargetType="TextBox">
                     <Setter Property="IsReadOnly" Value="{Binding IsDateReadonly}" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
                 </Style>
             </DataTemplate.Resources>
 
