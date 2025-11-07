@@ -9,5 +9,11 @@
         <SolidColorBrush x:Key="ViewBackground" Color="White" />
 
         <Thickness x:Key="Margin1">100,20</Thickness>
+
+        <Style x:Key="MultilineTextBoxStyle" TargetType="TextBox">
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="AcceptsReturn" Value="True" />
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+        </Style>
     </Application.Resources>
 </Application>

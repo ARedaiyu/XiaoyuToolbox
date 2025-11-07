@@ -15,17 +15,14 @@
     </UserControl.DataContext>
 
     <UserControl.Resources>
-        <Thickness x:Key="Margin">5</Thickness>
+        <Thickness x:Key="MarginA1">5</Thickness>
 
         <Style TargetType="TextBlock">
-            <Setter Property="Margin" Value="{StaticResource Margin}" />
+            <Setter Property="Margin" Value="{StaticResource MarginA1}" />
         </Style>
 
-        <Style TargetType="TextBox">
-            <Setter Property="Margin" Value="{StaticResource Margin}" />
-            <Setter Property="AcceptsReturn" Value="True" />
-            <Setter Property="TextWrapping" Value="Wrap" />
-            <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+        <Style BasedOn="{StaticResource MultilineTextBoxStyle}" TargetType="TextBox">
+            <Setter Property="Margin" Value="{StaticResource MarginA1}" />
         </Style>
     </UserControl.Resources>
 
@@ -39,14 +36,17 @@
         </Grid.RowDefinitions>
 
         <TextBlock Text="输入文本：" />
+
         <TextBox Grid.Row="1" Text="{Binding TextToConvert}" />
+
         <Button
             Grid.Row="2"
             Width="80"
-            Margin="{StaticResource Margin}"
+            Margin="{StaticResource MarginA1}"
             Command="{Binding ConvertCommand}"
             Content="转换" />
         <TextBlock Grid.Row="3" Text="转换结果：" />
+
         <TextBox
             Grid.Row="4"
             IsReadOnly="True"

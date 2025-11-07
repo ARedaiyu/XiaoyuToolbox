@@ -58,10 +58,8 @@
                 <TextBox
                     Height="250"
                     Margin="{StaticResource MarginA1}"
-                    AcceptsReturn="True"
-                    Text="{Binding InputText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    TextWrapping="Wrap"
-                    VerticalScrollBarVisibility="Auto" />
+                    Style="{StaticResource MultilineTextBoxStyle}"
+                    Text="{Binding InputText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
 
             <StackPanel Grid.Column="1" Margin="{StaticResource MarginA1}">
@@ -114,7 +112,7 @@
                     <TextBox
                         Grid.Row="2"
                         Grid.Column="1"
-                        VerticalContentAlignment="Top"
+                        Style="{StaticResource MultilineTextBoxStyle}"
                         Text="{Binding ModeText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
             </StackPanel>
