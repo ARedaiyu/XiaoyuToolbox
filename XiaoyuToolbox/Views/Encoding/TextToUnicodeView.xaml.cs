@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using XiaoyuToolbox.Common;
 
 namespace XiaoyuToolbox.Views.Encoding;
 
@@ -24,7 +25,7 @@ public partial class TextToUnicodeViewModel : ObservableObject
     {
         if (string.IsNullOrEmpty(TextToConvert))
         {
-            MessageBox.Show("请输入要转换的文本。", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
+            Util.ShowMessageBoxOK("请输入要转换的文本。", MessageBoxImage.Information);
             return;
         }
 

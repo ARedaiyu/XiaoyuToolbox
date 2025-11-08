@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using System.Windows;
 using System.Windows.Controls;
+using XiaoyuToolbox.Common;
 
 namespace XiaoyuToolbox.Views.Calculator;
 
@@ -144,7 +145,7 @@ public partial class DateCalculatorViewModel : ObservableObject
         }
         catch
         {
-            MessageBox.Show("计算错误", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+            Util.ShowMessageBoxOK("计算错误", MessageBoxImage.Error);
         }
     }
 
@@ -159,7 +160,7 @@ public partial class DateCalculatorViewModel : ObservableObject
         }
         catch
         {
-            MessageBox.Show("计算错误", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+            Util.ShowMessageBoxOK("计算错误", MessageBoxImage.Error);
         }
     }
 }

@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using XiaoyuToolbox.Common;
 
 namespace XiaoyuToolbox.Views.RandomTool;
 
@@ -170,7 +171,7 @@ public partial class RandomPasswordViewModel : ObservableObject
             }
             catch
             {
-                MessageBox.Show("保存文件失败", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                Util.ShowMessageBoxOK("保存文件失败", MessageBoxImage.Error);
             }
         }
     }
