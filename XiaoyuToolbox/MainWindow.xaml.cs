@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using XiaoyuToolbox.Common;
 using XiaoyuToolbox.Views;
 using XiaoyuToolbox.Views.Calculator;
+using XiaoyuToolbox.Views.DeviceCheck;
 using XiaoyuToolbox.Views.Encoding;
 using XiaoyuToolbox.Views.RandomTool;
 
@@ -25,6 +26,10 @@ public partial class MainWindow : Window
         new MenuCategory("随机工具",
         [
             new MenuItemInfo("随机密码生成器", typeof(RandomPasswordView))
+        ]),
+        new MenuCategory("设备检测",
+        [
+            new MenuItemInfo("鼠标检测", typeof(MouseCheckView))
         ])
     ];
 
